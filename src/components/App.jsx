@@ -11,6 +11,13 @@ export const App = () => {
   const filter = useSelector(state => state.phonebook.filter);
 
   const handleAddContact = newContact => {
+    const copyContact = contacts.find(
+      cont => cont.name.toLowerCase() === newContact.name.toLowerCase()
+    );
+    if (copyContact) {
+      alert(`${newContact.name} is already in contacts.`);
+      return;
+    }
     dispatch(addContact(newContact));
   };
 
